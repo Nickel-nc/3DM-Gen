@@ -21,7 +21,7 @@ like 3D computer vision tasks, robotics, video games, cinematic and e.t.c
 ### Expected Architecture
 - Monolith: math, logic, processing, model and app are working in modules 
 that runs from main script as entering point
-- CNN, RNN, GCN, GAN or Transformers?
+- CNN, RNN, GCN, GAN, diffusion or Transformers?
 
 ### Subtasks
 - Research: search and try appropriate architecture that suit dance motion generation for different joint systems
@@ -68,11 +68,11 @@ that runs from main script as entering point
 - Exist feasible min dataset. ~50 samples for 2-3 genres
 - Have trained model to generate dance sequences
 
-### Further development. Really won't expect in first scope
+### Future work and development. Won't expect in first scope
 - Make generated moves available to modify and learn
 - Increase moves for different genres
 - Add subsplit for typical music phrases over genrres (reefs, horus, melodic e.t.c.)
-- Scale model to fit different joint assets
+- Add scale model converter to fit different joint assets
 - Apply 3D model (or models) to skeletal structure
 
 ### Risks and limitations
@@ -82,3 +82,5 @@ that runs from main script as entering point
 - SOTA is highly challenging due to spatial constraints of the body
 - Need in custom processing of temporal coherency for various music genres and bits 
 - Correctness of handling different time signatures (4/4, 3/4 and e.t.c) for the same BPM??
+- Modern studies involves knowledge in 3d software and domain special algorithms
+- Huge computation impact for modern approaches (like A100 clusters)
