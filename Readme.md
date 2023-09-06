@@ -6,7 +6,7 @@ Project aimed at generating dance moves for hexapod spider 3D skeletal model
 
 |                                                                        |                                                                        |
 |:----------------------------------------------------------------------:|:----------------------------------------------------------------------:|
-| <img width="640" alt="sequence example 1" src="./figures/seq_ex1.gif"> | <img width="640" alt="sequence example 2" src="./figures/seq_ex2.gif"> |
+| <img width="400" alt="sequence example 1" src="./figures/seq_ex1.gif"> | <img width="400" alt="sequence example 2" src="./figures/seq_ex2.gif"> |
 
 
 ### Overview
