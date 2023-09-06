@@ -1,4 +1,3 @@
-# from __future__ import division
 import glob
 from PIL import Image
 import numpy as np
@@ -12,6 +11,8 @@ from hexapod.model_settings import BASE_DIMENSIONS
 """ Plot Style Settings """
 
 plt.style.use('dark_background')
+
+rcParams["figure.figsize"] = (12,12)
 
 rcParams['patch.facecolor'] = '#3c638250'
 rcParams['axes.prop_cycle'] = plt.cycler(color=["#EE5A24"])
@@ -134,11 +135,11 @@ class Plotter:
     def __init__(self, savefig=False, save_dir='../../misc/figs'):
         self.savefig = savefig
         self.save_dir = save_dir
-        self.anim_duration = 3
+        self.frame_speed = 0.02  # seconds per frame
 
     def draw_hexapod(self, leg_lines, body_poly, body_vertices):
 
-        fig = plt.figure(figsize=(12,12))
+        fig = plt.figure()
         ax = fig.add_subplot(projection='3d')
 
         # stand_pts = [
@@ -149,17 +150,18 @@ class Plotter:
         # ]
         for i in range(len(leg_lines)):
             plt.cla()
-
             plt.gcf().canvas.mpl_connect('key_release_event',
                                          lambda event: [exit(0) if event.key == 'escape' else None])
 
             # plot base stand polygon
             # base_poly = Poly3DCollection([stand_pts], alpha=0.5)
             # ax.add_collection3d(base_poly)
+
             # plot hexapod body polygon
             poly = Poly3DCollection([body_poly[i]], alpha=0.5)
             ax.add_collection3d(poly)
             # plot poly vertices
+            ax.plot(body_vertices[i][0], body_vertices[i][1], body_vertices[i][2])
             ax.scatter(body_vertices[i][0], body_vertices[i][1], body_vertices[i][2])
             # plot legs
             for leg in leg_lines[i]:
@@ -177,15 +179,15 @@ class Plotter:
             ax.set_zlim3d([0,300])
             # ax.margins(x=0, y=-0.25, z=50)
             ax.set_aspect('equal')
-            ax.view_init(elev=40, azim=55)
+            ax.view_init(elev=30, azim=75)
 
-            if self.savefig:
+            if self.savefig and i:
                 plt.savefig(f'{self.save_dir}/{str(i).zfill(3)}.png')
 
             plt.pause(0.1)
 
         if self.savefig:
-            self.make_gif
+            self.make_gif()
 
     def make_gif(self):
 
@@ -194,47 +196,45 @@ class Plotter:
 
         images = []
         basewidth = 640
-
+        files = glob.glob(target)
         # Create images list
-        for filename in glob.glob(target):
+        for filename in files:
             img = Image.open(filename)
             wpercent = (basewidth / float(img.size[0]))
             hsize = int((float(img.size[1]) * float(wpercent)))
-            img = img.resize((basewidth, hsize), Image.ANTIALIAS)
+            img = img.resize((basewidth, hsize), Image.LANCZOS)
 
             images.append(img)
-
-        images[0].save(output, format='GIF', append_images=images[1:], save_all=True, duration=self.anim_duration, loop=0)
+        duration = len(files) * self.frame_speed
+        images[0].save(output, format='GIF', append_images=images[1:], save_all=True, duration=duration, loop=0)
 
 #  Test routine
 if __name__ == "__main__":
 
     """Joints angle lists"""
     start = [
-        [45,-20,20],
-        [45,110,20],
-        [-45,110,20],
-        [-45,-20,20],
-        [0,-20,20],
-        [0,-20,20]
+        [45, -20, 20],   # 'rightMiddle'
+        [45, 110, 20],   # 'rightFront'
+        [-45, 110, 20],  # 'leftFront'
+        [-45, -20, 20],  # 'leftMiddle'
+        [0, -20, 20],    # 'leftBack'
+        [0, -20, 20]     # 'rightBack'
     ]
-
     end = [
-        [45,-20,20],
-        [0,110,-80],
-        [-90,110,-80],
-        [-45,-20,20],
-        [0,-20,20],
-        [0,-20,20]
+        [45, -20, 20],
+        [0, 110, -80],
+        [-90, 110, -80],
+        [-45, -20, 20],
+        [0, -20, 20],
+        [0, -20, 20]
     ]
-
     new_end = [
-        [45,-20,20],
-        [90,110,-80],
-        [0,110,-80],
-        [-45,-20,20],
-        [0,-20,20],
-        [0,-20,20]
+        [45, -20, 20],
+        [90, 110, -80],
+        [0, 110, -80],
+        [-45, -20, 20],
+        [0, -20, 20],
+        [0, -20, 20]
     ]
 
     s = SequenceDataGen()
@@ -242,4 +242,4 @@ if __name__ == "__main__":
     s.get_sequence(start_pose=start, end_pose=end, n_frames=20, reverse=True)
     s.get_sequence(start_pose=start, end_pose=new_end, n_frames=20, reverse=True)
 
-    Plotter(savefig=False).draw_hexapod(s.leg_lines, s.body_poly, s.body_vertices)
+    Plotter(savefig=True).draw_hexapod(s.leg_lines, s.body_poly, s.body_vertices)
