@@ -2,4 +2,7 @@
 /venv/
 /data/
 /misc/
+/notebooks/aist_smpl/aist_plusplus_final/
+/notebooks/aist_smpl/smpl/
 **/__pycache__/
+**/.ipynb_checkpoints/
