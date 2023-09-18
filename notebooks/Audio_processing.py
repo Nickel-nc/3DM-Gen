@@ -22,7 +22,7 @@ def extract_beats(audio_dict):
     return beats_time
 
 
-def hpss_decompose(y, sr):
+def hpss_decompose(y):
     y_harmonic, y_percussive = librosa.decompose.hpss(y)
     sig_harmonic, sig_percussive = librosa.istft(y_harmonic), librosa.istft(y_percussive)
     return sig_harmonic, sig_percussive
