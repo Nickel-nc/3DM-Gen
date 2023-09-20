@@ -1,16 +1,26 @@
-# Task relevant technologies and sota results
+# Task relevant technologies and SOTA models
 
 ### 3D Motion Generation
 
+[Robust Dancer: Long-term 3D Dance Synthesis Using Unpaired Data](https://arxiv.org/pdf/2303.16856v1.pdf)
+
+Notes:
+- Model: Transformer-based. music-encoder, style condition transformer
+- uses unaligned music-motions data
+- uses SMPL-X - joint 3D model of the human body
+- inputs: historical motions, beat context, style exemplars
+
 [Weakly Supervised Deep Recurrent Neural Networks for Basic Dance Step Generation](https://paperswithcode.com/paper/weakly-supervised-deep-recurrent-neural)
 
-Comments:
-- Let's check it as baseline!
+Notes:
 - Model: multilayer LSTM and convolutions to encode audio spectrum
 - can be performed without massive hand-constructed data
-- 20 stars 4 forks (git upd 5 years ago)
+- 20 stars 4 forks (git upd 5 years ago) - has broken links
 - year: 2021
 
+Investigation results:
+- Unclear, not explained dataset
+- Music bit feature extraction contains marsyas lib with broken links that can't be installed
 
 [EDGE: Editable Dance Generation From Music](https://paperswithcode.com/paper/edge-editable-dance-generation-from-music)
 
@@ -45,7 +55,7 @@ Notes:
 
 [Bailando: 3D Dance Generation by Actor-Critic GPT with Choreographic Memory](https://paperswithcode.com/paper/bailando-3d-dance-generation-by-actor-critic)
 
-Comments:
+Notes:
 - Model: GPT-like. 4 steps of model sequence
   - Step 1: Train pose VQ-VAE (without global velocity)
   - Step 2: Train glabal velocity branch of pose VQ-VAE
@@ -68,7 +78,7 @@ affinity and correspondence prediction
 
 [L2D: Learning to dance from music audio](https://github.com/verlab/Learning2Dance_CAG_2020)
 
-Comments:
+Notes:
  
 - Model: graph convolutional adversarial network 
 Estimates a motion to fit the audio
@@ -79,7 +89,7 @@ Estimates a motion to fit the audio
 
 [CSGN Long sequences of skeletons generation](https://paperswithcode.com/paper/convolutional-sequence-generation-for)
 
-Comments: 
+Notes: 
 
 - Model: CSGN convolution sequence generation network on graphs
 GCNs generates a set of skeleton poses
@@ -94,11 +104,24 @@ https://www.resolutiongames.com/blog/creating-a-dancing-character-with-machine-l
 
 [AIST++](https://paperswithcode.com/dataset/aist)
 
-Note:
+Notes:
 
 - 3D dance dataset which contains 3D motion reconstructed from real dancers paired with music
 - Used in creation of several SOTA approaches
 
+[Dance50](None)
+
+### Audio-visual alignment
+
+[AlignNet: A Unifying Approach to Audio-Visual Alignment](https://arxiv.org/pdf/2002.05070v1.pdf)
+
+Notes:
+- Attention transformer based model
+- audio-pose alignment fpr each frame
+- Log-mel spectrogram as audio feats 
+- end-to-end dense correspondence between each frame of a video and an audio
+- dance50 dataset
+- year: 2020
 
 ### Side relevants
 
@@ -111,12 +134,12 @@ Notes:
 
 [Dance Dance Convolution](https://arxiv.org/pdf/1703.06891v3.pdf)
 
-Comment:
+Notes:
 - Nice article on audio processing to generate bitmap applied for the DDR rhythm game
 
 
 [Animating Non-Humanoid Characters
 with Human Motion Data](https://la.disneyresearch.com/wp-content/uploads/Animating-Non-Humanoid-Characters-with-Human-Motion-Data-Paper.pdf)
 
-Note:
+Notes:
 - An algorithmic approach on datapoints conversion 
