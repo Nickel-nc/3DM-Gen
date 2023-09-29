@@ -1,0 +1,12 @@
+colorama==0.4.6
+decorator==4.4.2
+idna==3.4
+imageio==2.31.4
+imageio-ffmpeg==0.4.9
+moviepy==1.0.3
+numpy==1.26.0
+Pillow==10.0.1
+proglog==0.1.10
+requests==2.31.0
+tqdm==4.66.1
+urllib3==2.0.5
