@@ -4,8 +4,8 @@ import numpy as np
 from matplotlib import pyplot as plt, rcParams
 from mpl_toolkits.mplot3d.art3d import Poly3DCollection
 
-from hexapod.hexapod import Hexapod
-from hexapod.model_settings import BASE_DIMENSIONS
+from tools.visualize_app.hexapod.hexapod import Hexapod
+from tools.visualize_app.hexapod.model_settings import BASE_DIMENSIONS
 
 
 """ Plot Style Settings """
