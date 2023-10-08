@@ -28,9 +28,9 @@ rcParams['ytick.labelleft'] = False
 rcParams['ytick.left'] = False
 
 rcParams['axes3d.grid'] = False
-rcParams['axes3d.xaxis.panecolor'] = '#2D3437'
-rcParams['axes3d.yaxis.panecolor'] = '#2D3437'
-rcParams['axes3d.zaxis.panecolor'] = '#3c638220'
+# rcParams['axes3d.xaxis.panecolor'] = '#2D3437'
+# rcParams['axes3d.yaxis.panecolor'] = '#2D3437'
+# rcParams['axes3d.zaxis.panecolor'] = '#3c638220'
 
 """ #################### """
 
@@ -178,7 +178,7 @@ class Plotter:
             ax.set_ylim3d([-400,400])
             ax.set_zlim3d([0,300])
             # ax.margins(x=0, y=-0.25, z=50)
-            ax.set_aspect('equal')
+            # ax.set_aspect('equal')
             ax.view_init(elev=30, azim=75)
 
             if self.savefig and i:
