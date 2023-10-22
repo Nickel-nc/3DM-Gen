@@ -1,0 +1,34 @@
+[tool.poetry]
+name = "3dm-gen"
+version = "0.1.0"
+description = "library for hexapod dance generation"
+authors = ["Nickel-nc <nickel-nc@inbox.ru>"]
+license = "MIT"
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.11"
+torchvision = {version = "^0.16.0+cu118", source = "torch"}
+torchaudio = {version = "^2.1.0+cu118", source = "torch"}
+jupyterthemes = "^0.20.0"
+librosa = "^0.10.1"
+
+
+[[tool.poetry.source]]
+name = "pytorch"
+url = "https://download.pytorch.org/whl/cu118"
+priority = "explicit"
+
+
+[[tool.poetry.source]]
+name = "torch"
+url = "https://download.pytorch.org/whl/cu118"
+priority = "explicit"
+
+
+[tool.poetry.group.dev.dependencies]
+jupyter = "^1.0.0"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
